@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Cadeau d'amour</title>
+<title>Surprise d'amour</title>
 <style>
   body {
     background: 
-      linear-gradient(rgba(255, 200, 200, 0.3), rgba(255, 170, 170, 0.5)),
-      url('https://cdn.pixabay.com/photo/2016/11/29/04/16/roses-1868641_1280.jpg');
+      linear-gradient(rgba(255, 200, 220, 0.3), rgba(255, 180, 200, 0.5)),
+      url('https://cdn.pixabay.com/photo/2016/03/27/21/15/roses-1288156_1280.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -20,77 +20,34 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #331010;
     text-align: center;
-    padding: 20px;
     overflow: hidden;
+    padding: 20px;
   }
 
-  .profile-img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    margin-bottom: 20px;
-    animation: fadeIn 2s ease-in;
-    border: 4px solid rgba(255,255,255,0.8);
-  }
-
-  h1 {
+  .big-text {
     font-size: 3em;
-    margin: 0;
-    color: #b30059;
-    text-shadow: 0 0 10px rgba(255,255,255,0.8);
-    animation: fadeIn 3s ease-in;
-  }
-
-  .subtitle {
-    font-size: 1.6em;
-    margin-top: 8px;
-    color: #fff0f5;
-    font-weight: 600;
-    text-shadow: 0 0 8px rgba(0,0,0,0.4);
-    animation: fadeIn 4s ease-in;
-  }
-
-  .gift-text {
-    margin-top: 15px;
+    color: #ff0000;
     font-weight: bold;
-    font-size: 1.2em;
-    color: #5c0000;
-    animation: fadeIn 5s ease-in;
+    text-shadow: 0 0 20px rgba(255,0,0,0.8);
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .big-text:hover {
+    transform: scale(1.1);
   }
 
   .love-message {
+    display: none;
     margin-top: 30px;
-    font-size: 1.2em;
+    font-size: 1.3em;
     color: #3b0202;
     font-style: italic;
     max-width: 600px;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.7);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    animation: fadeIn 6s ease-in;
-  }
-
-  .big-love {
-    margin-top: 30px;
-    font-size: 3.5em;
-    font-weight: bold;
-    color: #ff0000;
-    text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
-    animation: blink 1.2s infinite alternate, fadeIn 7s ease-in;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
+    animation: fadeIn 2s ease-in;
   }
 
   .heart {
@@ -101,6 +58,11 @@
     opacity: 0.8;
   }
 
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+
   @keyframes float {
     0% { transform: translateY(0) scale(1); opacity: 1; }
     100% { transform: translateY(-100vh) scale(1.6); opacity: 0; }
@@ -108,29 +70,34 @@
 </style>
 </head>
 <body>
-  <img src="https://cdn.pixabay.com/photo/2017/02/01/22/02/rose-2036324_1280.jpg" alt="Rose d'amour" class="profile-img" />
-  <h1>Je t'aime</h1>
-  <div class="subtitle">MEIN SCHATZ</div>
-  <div class="gift-text">Un cadeau du cœur, rien que pour toi 💞</div>
 
-  <div class="love-message">
-    Quand je pense à toi, tout devient doux et lumineux.<br>
-    Mon cœur bat au rythme de ton sourire, et chaque mot de cette chanson te parle de moi.<br>
-    Que la mélodie t’enlace, que les roses te murmurent : je t’aime, pour aujourd’hui et pour toujours.
-  </div>
+<div class="big-text" id="surpriseText">💌 J’ai une surprise pour toi…</div>
 
-  <div class="big-love">💖 JE T’AIME 💖</div>
+<div class="love-message" id="loveMsg">
+  Mon cœur bat pour toi, et chaque instant passé ensemble est un trésor.<br>
+  Que cette mélodie douce t’enveloppe et que chaque mot te rappelle combien je t’aime.<br>
+  💖 Pour toujours et à jamais 💖
+</div>
 
-  <!-- Musique d'amour automatique -->
-  <div id="player" style="margin-top:20px;">
-    <iframe width="0" height="0" 
-      src="https://www.youtube.com/embed/450p7goxZqg?autoplay=1&loop=1&playlist=450p7goxZqg"
-      title="All of Me - John Legend" 
-      frameborder="0" allow="autoplay; encrypted-media"></iframe>
-  </div>
+<!-- Musique d'amour intégrée -->
+<div id="player" style="display:none;">
+  <iframe width="0" height="0" 
+    src="https://www.youtube.com/embed/CmHkD-Q9H7A?autoplay=1&loop=1&playlist=CmHkD-Q9H7A"
+    title="Musique romantique" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+</div>
 
 <script>
-  // Génère de jolis cœurs flottants
+  const surpriseText = document.getElementById('surpriseText');
+  const loveMsg = document.getElementById('loveMsg');
+  const player = document.getElementById('player');
+
+  surpriseText.addEventListener('click', () => {
+    surpriseText.style.display = 'none';
+    loveMsg.style.display = 'block';
+    player.style.display = 'block';
+  });
+
+  // Génération de cœurs flottants
   function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
@@ -143,5 +110,6 @@
   }
   setInterval(createHeart, 400);
 </script>
+
 </body>
 </html>
