@@ -3,86 +3,84 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Surprise d'amour</title>
+<title>Surprise d'amour cinématique</title>
 <style>
   body {
-    background: 
-      linear-gradient(rgba(255, 200, 220, 0.3), rgba(255, 180, 200, 0.5)),
-      url('https://cdn.pixabay.com/photo/2016/03/27/21/15/roses-1288156_1280.jpg');
-    background-size: cover;
-    background-position: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffe0e6, #ffb3c6);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #331010;
     text-align: center;
-    overflow: hidden;
-    padding: 20px;
+    color: #331010;
   }
 
   .big-text {
     font-size: 3em;
-    color: #ff0000;
     font-weight: bold;
-    text-shadow: 0 0 20px rgba(255,0,0,0.8);
+    color: #ff0000;
+    text-shadow: 0 0 25px rgba(255,0,0,0.9);
     cursor: pointer;
-    transition: transform 0.3s;
+    animation: pulse 2s infinite;
+    transition: transform 0.3s, opacity 0.5s;
   }
-  .big-text:hover {
-    transform: scale(1.1);
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
   }
 
   .love-message {
     display: none;
-    margin-top: 30px;
+    margin-top: 20px;
     font-size: 1.3em;
     color: #3b0202;
     font-style: italic;
-    max-width: 600px;
-    background: rgba(255, 255, 255, 0.7);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    animation: fadeIn 2s ease-in;
+    max-width: 650px;
+    background: rgba(255,255,255,0.7);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    animation: fadeInText 2s ease-in forwards;
+  }
+
+  @keyframes fadeInText {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
   }
 
   .heart {
     position: absolute;
     color: #ff4b5c;
     font-size: 20px;
-    animation: float 6s linear infinite;
-    opacity: 0.8;
+    opacity: 0.7;
+    animation: fall 6s linear infinite;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px);}
-    to { opacity: 1; transform: translateY(0);}
-  }
-
-  @keyframes float {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-100vh) scale(1.6); opacity: 0; }
+  @keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity:1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
   }
 </style>
 </head>
 <body>
 
 <div class="big-text" id="surpriseText">💌 J’ai une surprise pour toi…</div>
-
 <div class="love-message" id="loveMsg">
   Mon cœur bat pour toi, et chaque instant passé ensemble est un trésor.<br>
   Que cette mélodie douce t’enveloppe et que chaque mot te rappelle combien je t’aime.<br>
   💖 Pour toujours et à jamais 💖
 </div>
 
-<!-- Musique d'amour intégrée -->
+<!-- Musique romantique -->
 <div id="player" style="display:none;">
   <iframe width="0" height="0" 
-    src="https://www.youtube.com/embed/CmHkD-Q9H7A?autoplay=1&loop=1&playlist=CmHkD-Q9H7A"
+    src="https://www.youtube.com/embed/3JWTaaS7LdU?autoplay=1&loop=1&playlist=3JWTaaS7LdU"
     title="Musique romantique" frameborder="0" allow="autoplay; encrypted-media"></iframe>
 </div>
 
@@ -91,25 +89,26 @@
   const loveMsg = document.getElementById('loveMsg');
   const player = document.getElementById('player');
 
+  // Au clic, révélation de l'amour
   surpriseText.addEventListener('click', () => {
-    surpriseText.style.display = 'none';
+    surpriseText.style.opacity = 0;
+    setTimeout(() => { surpriseText.style.display = 'none'; }, 500);
     loveMsg.style.display = 'block';
     player.style.display = 'block';
   });
 
-  // Génération de cœurs flottants
+  // Génération de cœurs tombants
   function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.textContent = '❤';
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = (15 + Math.random() * 20) + 'px';
-    heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+    heart.style.animationDuration = (5 + Math.random() * 5) + 's';
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 7000);
+    setTimeout(() => heart.remove(), 10000);
   }
-  setInterval(createHeart, 400);
+  setInterval(createHeart, 300);
 </script>
-
 </body>
 </html>
