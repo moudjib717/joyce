@@ -6,7 +6,11 @@
 <title>Cadeau d'amour</title>
 <style>
   body {
-    background: linear-gradient(135deg, #fceabb, #f8b500);
+    background: 
+      linear-gradient(rgba(255, 200, 200, 0.3), rgba(255, 170, 170, 0.5)),
+      url('https://cdn.pixabay.com/photo/2016/11/29/04/16/roses-1868641_1280.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,7 +18,7 @@
     height: 100vh;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
+    color: #331010;
     text-align: center;
     padding: 20px;
     overflow: hidden;
@@ -24,54 +28,59 @@
     height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
     margin-bottom: 20px;
     animation: fadeIn 2s ease-in;
+    border: 4px solid rgba(255,255,255,0.8);
   }
   h1 {
     font-size: 3em;
     margin: 0;
-    color: #7a1e1e;
+    color: #b30059;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
     animation: fadeIn 3s ease-in;
   }
   .subtitle {
     font-size: 1.6em;
     margin-top: 8px;
-    color: #555;
+    color: #fff0f5;
     font-weight: 600;
+    text-shadow: 0 0 8px rgba(0,0,0,0.4);
     animation: fadeIn 4s ease-in;
   }
   .gift-text {
     margin-top: 15px;
     font-weight: bold;
     font-size: 1.2em;
-    color: #4a2c00;
+    color: #5c0000;
     animation: fadeIn 5s ease-in;
   }
   .love-message {
     margin-top: 30px;
     font-size: 1.2em;
-    color: #4a2c00;
+    color: #3b0202;
     font-style: italic;
     max-width: 600px;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
     animation: fadeIn 6s ease-in;
   }
-  /* animation douce d’apparition */
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  /* cœurs flottants */
   .heart {
     position: absolute;
     color: #ff4b5c;
     font-size: 20px;
     animation: float 6s linear infinite;
-    opacity: 0.7;
+    opacity: 0.8;
   }
   @keyframes float {
     0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    100% { transform: translateY(-100vh) scale(1.6); opacity: 0; }
   }
 </style>
 </head>
@@ -79,33 +88,35 @@
   <img src="https://cdn.pixabay.com/photo/2017/02/01/22/02/rose-2036324_1280.jpg" alt="Rose d'amour" class="profile-img" />
   <h1>Je t'aime</h1>
   <div class="subtitle">MEIN SCHATZ</div>
-  <div class="gift-text">Un cadeau du cœur</div>
+  <div class="gift-text">Un cadeau du cœur, rien que pour toi 💞</div>
 
   <div class="love-message">
-    Dans ce monde incertain, mon cœur trouve refuge en toi.<br>
-    Chaque instant partagé est un trésor, chaque pensée pour toi, une douce mélodie qui apaise mon âme.<br>
-    Que cette chanson t’enveloppe de tendresse et de lumière,<br>
-    car tu es la raison de mon sourire et le souffle de mon amour éternel.
+    Quand je pense à toi, tout devient doux et lumineux.<br>
+    Mon cœur bat au rythme de ton sourire, et chaque mot de cette chanson te parle de moi.<br>
+    Que la mélodie t’enlace, que les roses te murmurent : je t’aime, pour aujourd’hui et pour toujours.
   </div>
 
   <!-- Musique d'amour automatique -->
   <div id="player" style="margin-top:20px;">
-    <iframe width="0" height="0" src="https://www.youtube.com/embed/450p7goxZqg?autoplay=1&loop=1&playlist=450p7goxZqg"
-      title="Musique d'amour" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+    <iframe width="0" height="0" 
+      src="https://www.youtube.com/embed/450p7goxZqg?autoplay=1&loop=1&playlist=450p7goxZqg"
+      title="All of Me - John Legend" 
+      frameborder="0" allow="autoplay; encrypted-media"></iframe>
   </div>
 
 <script>
-  // Génération de cœurs animés
+  // Génère de jolis cœurs flottants
   function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
-    heart.textContent = '❤';
+    heart.textContent = '❤💕🎉';
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+    heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+    heart.style.animationDuration = (4 + Math.random() * 4) + 's';
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
+    setTimeout(() => heart.remove(), 7000);
   }
-  setInterval(createHeart, 500);
+  setInterval(createHeart, 400);
 </script>
 </body>
 </html>
