@@ -17,6 +17,7 @@
     color: #333;
     text-align: center;
     padding: 20px;
+    overflow: hidden;
   }
   .profile-img {
     width: 180px;
@@ -25,23 +26,27 @@
     object-fit: cover;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     margin-bottom: 20px;
+    animation: fadeIn 2s ease-in;
   }
   h1 {
     font-size: 3em;
     margin: 0;
     color: #7a1e1e;
+    animation: fadeIn 3s ease-in;
   }
   .subtitle {
     font-size: 1.6em;
     margin-top: 8px;
     color: #555;
     font-weight: 600;
+    animation: fadeIn 4s ease-in;
   }
   .gift-text {
     margin-top: 15px;
     font-weight: bold;
     font-size: 1.2em;
     color: #4a2c00;
+    animation: fadeIn 5s ease-in;
   }
   .love-message {
     margin-top: 30px;
@@ -49,17 +54,24 @@
     color: #4a2c00;
     font-style: italic;
     max-width: 600px;
-    display: none; /* caché avant que la musique commence */
+    animation: fadeIn 6s ease-in;
   }
-  .play-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    cursor: pointer;
-    background-color: #7a1e1e;
-    color: white;
-    border: none;
-    border-radius: 5px;
+  /* animation douce d’apparition */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  /* cœurs flottants */
+  .heart {
+    position: absolute;
+    color: #ff4b5c;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+    opacity: 0.7;
+  }
+  @keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
   }
 </style>
 </head>
@@ -67,37 +79,33 @@
   <img src="https://cdn.pixabay.com/photo/2017/02/01/22/02/rose-2036324_1280.jpg" alt="Rose d'amour" class="profile-img" />
   <h1>Je t'aime</h1>
   <div class="subtitle">MEIN SCHATZ</div>
-  <div class="gift-text">CECI EST UN CADEAU</div>
+  <div class="gift-text">Un cadeau du cœur</div>
 
-  <!-- Bouton play -->
-  <button class="play-button" id="playBtn">Appuyez sur Play pour écouter la musique</button>
-
-  <!-- Texte caché qui apparait après le clic -->
-  <div class="love-message" id="loveMsg">
+  <div class="love-message">
     Dans ce monde incertain, mon cœur trouve refuge en toi.<br>
     Chaque instant partagé est un trésor, chaque pensée pour toi, une douce mélodie qui apaise mon âme.<br>
-    Que cette chanson accompagne ce message, porteur de tout mon amour,<br>
-    car tu es la lumière qui éclaire mes jours et la paix qui berce mes nuits.
+    Que cette chanson t’enveloppe de tendresse et de lumière,<br>
+    car tu es la raison de mon sourire et le souffle de mon amour éternel.
   </div>
 
-  <!-- Lecteur YouTube intégré (exemple légal) -->
-  <div id="player" style="margin-top:20px; display:none;">
-    <iframe width="300" height="180" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID?autoplay=1" 
-      title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <!-- Musique d'amour automatique -->
+  <div id="player" style="margin-top:20px;">
+    <iframe width="0" height="0" src="https://www.youtube.com/embed/450p7goxZqg?autoplay=1&loop=1&playlist=450p7goxZqg"
+      title="Musique d'amour" frameborder="0" allow="autoplay; encrypted-media"></iframe>
   </div>
 
 <script>
-  const playBtn = document.getElementById('playBtn');
-  const loveMsg = document.getElementById('loveMsg');
-  const player = document.getElementById('player');
-
-  playBtn.addEventListener('click', () => {
-    // cacher le bouton
-    playBtn.style.display = 'none';
-    // afficher le texte et le lecteur
-    loveMsg.style.display = 'block';
-    player.style.display = 'block';
-  });
+  // Génération de cœurs animés
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '❤';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+  setInterval(createHeart, 500);
 </script>
 </body>
 </html>
