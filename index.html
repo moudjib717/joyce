@@ -49,6 +49,17 @@
     color: #4a2c00;
     font-style: italic;
     max-width: 600px;
+    display: none; /* caché avant que la musique commence */
+  }
+  .play-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #7a1e1e;
+    color: white;
+    border: none;
+    border-radius: 5px;
   }
 </style>
 </head>
@@ -57,17 +68,36 @@
   <h1>Je t'aime</h1>
   <div class="subtitle">MEIN SCHATZ</div>
   <div class="gift-text">CECI EST UN CADEAU</div>
-  <div class="love-message">
+
+  <!-- Bouton play -->
+  <button class="play-button" id="playBtn">Appuyez sur Play pour écouter la musique</button>
+
+  <!-- Texte caché qui apparait après le clic -->
+  <div class="love-message" id="loveMsg">
     Dans ce monde incertain, mon cœur trouve refuge en toi.<br>
     Chaque instant partagé est un trésor, chaque pensée pour toi, une douce mélodie qui apaise mon âme.<br>
     Que cette chanson accompagne ce message, porteur de tout mon amour,<br>
     car tu es la lumière qui éclaire mes jours et la paix qui berce mes nuits.
   </div>
 
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/30/audio_8f6749a473.mp3?filename=relaxing-piano-ambient-10811.mp3" type="audio/mpeg" />
-    Ton navigateur ne supporte pas la lecture audio.
-  </audio>
+  <!-- Lecteur YouTube intégré (exemple légal) -->
+  <div id="player" style="margin-top:20px; display:none;">
+    <iframe width="300" height="180" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID?autoplay=1" 
+      title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+
+<script>
+  const playBtn = document.getElementById('playBtn');
+  const loveMsg = document.getElementById('loveMsg');
+  const player = document.getElementById('player');
+
+  playBtn.addEventListener('click', () => {
+    // cacher le bouton
+    playBtn.style.display = 'none';
+    // afficher le texte et le lecteur
+    loveMsg.style.display = 'block';
+    player.style.display = 'block';
+  });
+</script>
 </body>
 </html>
-
